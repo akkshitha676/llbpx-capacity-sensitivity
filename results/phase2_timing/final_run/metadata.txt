@@ -1,0 +1,12 @@
+Experiment: CS683 Phase 2 LLBP-X Timing Sensitivity
+UTC start time: 2026-11-21T10:09:08Z
+Git revision: 390e8d3
+Predictor SHA-256: e61bfcb63ac25b1ea0f8754219303542e878f2f1279177388fe422d1bad17735
+Build type: Release
+Warm-up instructions: 100000000
+Measured instructions: 200000000
+BTB: enabled
+Concurrency: 4
+Access delays: 0 2 4 8 16
+Workloads: 14
+Total simulations: 252
