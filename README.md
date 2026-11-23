@@ -1,7 +1,7 @@
 
 # LLBP-X: Capacity and Timing Sensitivity Study
 
-This project studies the capacity and timing sensitivity of the Last-Level Branch Predictor with eXtensions (LLBP-X), an enhanced branch prediction mechanism built on top of TAGE-SC-L.
+This project studies the capacity and timing sensitivity of LLBP-X, an enhanced version of LLBP built on top of TAGE-SC-L.
 
 The project consists of two studies:
 
@@ -231,9 +231,9 @@ The configurations use the same relevant predictor settings within each capacity
 
 The access delay is specified in simulator ticks.
 
-The simulator advances predictor timing through its branch-prediction execution mechanism. A tick is generated on a taken branch or when more than eight instructions are skipped.
+The simulator increments the predictor's internal tick counter when a branch is taken or when more than eight instructions are skipped. In timing-enabled LLBP-X, each tick also advances the pattern-prefetch queue.
 
-Therefore, simulator ticks should not be interpreted as CPU clock cycles.
+This is a rough timing approximation. The simulator does not model the full processor pipeline or determine the exact number of clock cycles between predictions. Therefore, simulator ticks should not be interpreted as CPU clock cycles.
 
 The experiment studies the effect of varying this simulator-level access-delay parameter. It does not establish a direct mapping between the evaluated delays and a specific physical hardware latency.
 
@@ -330,7 +330,7 @@ Provider accuracy increases slightly at higher delays. This should not be interp
 
 The observed increase in provider accuracy may be associated with changes in which predictions remain provider-eligible. The aggregate data alone does not establish the precise cause.
 
-The `Shorter` and `NoPrefetch` statistics are not mutually exclusive and should not be interpreted as separate parts of a complete distribution.
+The `Shorter` and `NoPrefetch` counters track separate conditions associated with pattern hits that are not used as providers. Both conditions can apply to the same pattern hit, so the counters are not mutually exclusive and should not be interpreted as a complete partition of all pattern hits.
 
 ### Workload-Level Analysis
 
