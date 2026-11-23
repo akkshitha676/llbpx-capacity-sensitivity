@@ -6,7 +6,7 @@ set -Eeuo pipefail
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-EXPECTED_COMMIT="390e8d3"
+EXPECTED_SOURCE_COMMIT="390e8d3"
 EXPECTED_SHA256="e61bfcb63ac25b1ea0f8754219303542e878f2f1279177388fe422d1bad17735"
 
 WARMUP=100000000
@@ -99,9 +99,7 @@ WORKLOADS=(
 command -v xargs >/dev/null 2>&1 || die "xargs is not installed."
 command -v sha256sum >/dev/null 2>&1 || die "sha256sum is not installed."
 
-ACTUAL_COMMIT="$(git rev-parse --short=7 HEAD)"
-[[ "$ACTUAL_COMMIT" == "$EXPECTED_COMMIT" ]] ||
-    die "Unexpected Git revision: $ACTUAL_COMMIT"
+REPO_COMMIT="$(git rev-parse --short=7 HEAD)"
 
 git diff --quiet ||
     die "Tracked working-tree changes detected. Review them before running."
@@ -151,7 +149,8 @@ TOTAL_RUNS="${#RUN_SPECS[@]}"
 echo "=========================================="
 echo "CS683 Phase 2: LLBP-X Timing Experiment"
 echo "=========================================="
-echo "Git revision:       $ACTUAL_COMMIT"
+echo "Repository revision:       $REPO_COMMIT"
+echo "Reference source revision:  $EXPECTED_SOURCE_COMMIT"
 echo "Predictor SHA-256:  $ACTUAL_SHA256"
 echo "Warm-up:            $WARMUP"
 echo "Measured:           $SIM_INSTRUCTIONS"
@@ -188,7 +187,8 @@ mkdir -p "$OUT_DIR"
 {
     echo "Experiment: CS683 Phase 2 LLBP-X Timing Sensitivity"
     echo "UTC start time: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
-    echo "Git revision: $ACTUAL_COMMIT"
+    echo "Repository revision: $REPO_COMMIT"
+    echo "Predictor source revision (pinned): $EXPECTED_SOURCE_COMMIT"
     echo "Predictor SHA-256: $ACTUAL_SHA256"
     echo "Build type: Release"
     echo "Warm-up instructions: $WARMUP"

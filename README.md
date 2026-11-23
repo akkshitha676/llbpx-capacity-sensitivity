@@ -227,6 +227,34 @@ The configurations use the same relevant predictor settings within each capacity
 
 **Important:** A delay-zero timing-enabled run is not equivalent to a non-timing reference run. The timing-enabled path still uses the timing-model queue and associated bookkeeping, even when the configured access delay is zero.
 
+### Trace Requirements
+
+The Phase II timing-sensitivity experiment requires 14 ChampSim compressed trace files. All 14 files must be present in the repository's `traces/` directory with the exact filenames listed below:
+
+```text
+traces/
+├── mwnginxfpm-wiki.champsim.trace.gz
+├── dacapo-kafka.champsim.trace.gz
+├── dacapo-tomcat.champsim.trace.gz
+├── dacapo-spring.champsim.trace.gz
+├── renaissance-finagle-chirper.champsim.trace.gz
+├── renaissance-finagle-http.champsim.trace.gz
+├── benchbase-tpcc.champsim.trace.gz
+├── benchbase-twitter.champsim.trace.gz
+├── benchbase-wikipedia.champsim.trace.gz
+├── nodeapp-nodeapp.champsim.trace.gz
+├── charlie.1006518.champsim.trace.gz
+├── delta.507252.champsim.trace.gz
+├── merced.467915.champsim.trace.gz
+└── whiskey.426708.champsim.trace.gz
+```
+
+The trace files are not included in this repository. Users must obtain the required traces separately and place them in the `traces/` directory before running the experiment.
+
+The experiment runner checks that all 14 trace files exist and are non-empty. It terminates with an error if any required trace is missing or empty.
+
+**Reproducibility note:** Use the same trace versions and sources as the original experiment. Different trace versions or inputs may produce different results.
+
 ### Timing Model
 
 The access delay is specified in simulator ticks.
