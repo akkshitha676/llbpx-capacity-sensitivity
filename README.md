@@ -122,12 +122,12 @@ The following table reports the geometric-mean and pooled MPKI improvements of L
 | Configuration | Geometric-Mean Improvement | Pooled Improvement | Workloads Improved |
 |---|---:|---:|---:|
 | LogG10 | 12.92% | 13.41% | 14/14 |
-| LogG9 | 21.37% | 19.98% | 13/14 |
-| LogG8 | 32.34% | 27.82% | 6/14 |
+| LogG9 | 21.37% | 19.98% | 14/14 |
+| LogG8 | 32.34% | 27.82% | 14/14 |
 
 The results indicate that LLBP-X continues to outperform its corresponding standalone baseline under reduced capacity in aggregate.
 
-However, the number of workloads that improve decreases as capacity is reduced. LogG8 shows a particularly mixed workload-level response despite its aggregate improvement.
+All 14 workloads improve over their corresponding same-capacity standalone TAGE-SC-L baselines at all three capacity configurations. However, this does not mean that LLBP-X consistently outperforms the full-size 64K baseline, as shown by Metric B.
 
 ### Absolute MPKI
 
